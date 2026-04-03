@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fintech Access Control Simulator</title>
+  <meta name="description" content="Interview-ready project demo with CRUD operations, filtering, sorting, and local persistence." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="ambient ambient-a"></div>
+  <div class="ambient ambient-b"></div>
+
+  <header class="site-header">
+    <div class="logo-wrap">
+      <div class="logo-mark" aria-hidden="true"></div>
+      <span class="logo-text">FinEdge Control Center</span>
+    </div>
+    <nav class="site-nav">
+      <a href="#dashboard">Dashboard</a>
+      <a href="#records">Records</a>
+      <a href="#create">Create</a>
+    </nav>
+    <button id="seed-data-btn" class="cta ghost">Load Demo Data</button>
+  </header>
+
+  <main>
+    <section class="hero section reveal" id="dashboard">
+      <div class="hero-copy">
+        <p class="eyebrow">Interview Project Demo • Runs Without Backend</p>
+        <h1>Fintech Access Control Simulator</h1>
+        <p class="lead">
+          This front-end application simulates real-world operations: create and manage secure access requests,
+          apply filters, sort by risk, and persist state in local storage.
+        </p>
+        <div class="hero-actions">
+          <button id="clear-all-btn" class="cta primary">Clear All Records</button>
+          <button id="export-json-btn" class="cta secondary">Export JSON</button>
+        </div>
+      </div>
+
+      <div class="hero-panel">
+        <div class="status-chip">
+          <span class="pulse"></span>
+          Local Storage Sync Active
+        </div>
+        <div class="panel-grid">
+          <article class="mini-card">
+            <h3><span id="total-count" class="counter">0</span></h3>
+            <p>Total Requests</p>
+          </article>
+          <article class="mini-card">
+            <h3><span id="approved-count" class="counter">0</span></h3>
+            <p>Approved</p>
+          </article>
+          <article class="mini-card">
+            <h3><span id="pending-count" class="counter">0</span></h3>
+            <p>Pending</p>
+          </article>
+          <article class="mini-card">
+            <h3><span id="high-risk-count" class="counter">0</span></h3>
+            <p>High Risk (&ge;70)</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="records" class="section reveal">
+      <div class="section-title-wrap">
+        <p class="eyebrow">Request Management</p>
+        <h2>Search, filter, sort, update and remove access requests.</h2>
+      </div>
+      <div class="table-controls">
+        <input id="search-input" class="field" type="text" placeholder="Search by name, department, or role" />
+        <select id="status-filter" class="field">
+          <option value="all">All Statuses</option>
+          <option value="pending">Pending</option>
+          <option value="approved">Approved</option>
+          <option value="rejected">Rejected</option>
+        </select>
+        <select id="sort-select" class="field">
+          <option value="newest">Sort: Newest</option>
+          <option value="oldest">Sort: Oldest</option>
+          <option value="risk-desc">Sort: Risk High to Low</option>
+          <option value="risk-asc">Sort: Risk Low to High</option>
+        </select>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>User</th>
+              <th>Department</th>
+              <th>Role</th>
+              <th>Risk</th>
+              <th>Status</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="records-body"></tbody>
+        </table>
+        <p id="empty-state" class="empty-state">No records found. Add a request or load demo data.</p>
+      </div>
+    </section>
+
+    <section id="create" class="section reveal">
+      <div class="section-title-wrap">
+        <p class="eyebrow">Create Request</p>
+        <h2>Add a new access request with validation and instant UI updates.</h2>
+      </div>
+      <div class="form-card">
+        <form id="request-form" novalidate>
+          <div class="form-grid">
+            <label>
+              Full Name
+              <input class="field" type="text" name="name" placeholder="e.g. Priya Malhotra" required />
+            </label>
+            <label>
+              Department
+              <input class="field" type="text" name="department" placeholder="e.g. Compliance" required />
+            </label>
+            <label>
+              Access Role
+              <input class="field" type="text" name="role" placeholder="e.g. Operations Analyst" required />
+            </label>
+            <label>
+              Risk Score (0-100)
+              <input class="field" type="number" name="risk" min="0" max="100" value="35" required />
+            </label>
+            <label>
+              Request Status
+              <select class="field" name="status" required>
+                <option value="pending">Pending</option>
+                <option value="approved">Approved</option>
+                <option value="rejected">Rejected</option>
+              </select>
+            </label>
+          </div>
+          <div class="form-actions">
+            <button class="cta primary" type="submit">Save Request</button>
+            <button id="reset-form-btn" class="cta secondary" type="button">Reset Form</button>
+          </div>
+          <p id="form-message" class="form-message" aria-live="polite"></p>
+        </form>
+      </div>
+    </section>
+
+    <section id="stack" class="section reveal">
+      <div class="section-title-wrap">
+        <p class="eyebrow">Skills Demonstrated</p>
+        <h2>What this project proves during your interview.</h2>
+      </div>
+      <div class="chip-row">
+        <span class="chip">Semantic HTML</span>
+        <span class="chip">Responsive CSS</span>
+        <span class="chip">JavaScript CRUD</span>
+        <span class="chip">Array Filtering & Sorting</span>
+        <span class="chip">Form Validation</span>
+        <span class="chip">localStorage Persistence</span>
+        <span class="chip">Data Export</span>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer reveal">
+    <p>Fintech Access Control Simulator • Front-End Interview Demo</p>
+    <p>Tip: Start by loading demo data, then show search, filters, edits, and JSON export.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
