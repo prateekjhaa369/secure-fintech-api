@@ -1,0 +1,46 @@
+openapi: 3.0.3
+info:
+  title: Secure Fintech User Management API
+  version: 0.2.0-wip
+  description: >-
+    Draft API contract for current backend work. Intentionally incomplete for milestone tracking.
+servers:
+  - url: http://localhost:8000
+paths:
+  /health:
+    get:
+      summary: Service health
+      responses:
+        '200':
+          description: Healthy
+  /v1/users:
+    get:
+      summary: List users (WIP)
+      responses:
+        '200':
+          description: Placeholder response
+    post:
+      summary: Create user (WIP)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: Accepted
+  /v1/auth/login:
+    post:
+      summary: Login and issue JWT (WIP)
+      responses:
+        '200':
+          description: Token response
+components:
+  schemas:
+    # TODO: Define User, Transaction, TenantClaims, and ErrorResponse schemas.
+    Placeholder:
+      type: object
+      properties:
+        note:
+          type: string

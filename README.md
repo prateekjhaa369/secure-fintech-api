@@ -1,16 +1,25 @@
-Secure Fintech User Management API
-Status: Database Schema Design Phase 🔒
+# Secure Fintech User Management API
 
-Tech Stack
-Backend: Java (Spring Boot)
+Status: Active Development (Demo + Backend WIP)
 
-Database: PostgreSQL (Supabase)
+## Live Demo (Current)
+- Interactive browser app for access-request management.
+- Add/Edit/Delete records, search, filter, sort, and export JSON.
+- Uses free public API data for demo seeding and localStorage for persistence.
 
-Security: JWT, Row-Level Security (RLS)
+## Backend Work In Progress
+- FastAPI skeleton with draft endpoints: `backend_fastapi/app/main.py`
+- JWT helper draft: `backend_fastapi/app/security.py`
+- RLS policy draft: `backend_fastapi/sql/rls_policies.sql`
+- OpenAPI draft contract: `openapi/secure-fintech-openapi.yaml`
+- Progress notes: `docs/current-work.md`
 
-Core Features
-Data Isolation: 100% tenant isolation using PostgreSQL RLS policies.
+## Target Stack
+- Backend: FastAPI, Python
+- Database: Supabase (PostgreSQL)
+- Security: JWT, Row-Level Security (RLS), middleware authorization
 
-Integrity: Strict ACID compliance for financial transaction consistency.
-
-Auth: Secure JWT-based middleware for 95% reduction in unauthorized access risk.
+## Interview Metrics Narrative
+- Designed for 5k+ sensitive profile records in a multi-tenant model.
+- Focused on tenant isolation, strict state integrity, and secure auth controls.
+- Current demo validates product flow while backend security layers are being integrated.
